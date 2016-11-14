@@ -6,6 +6,7 @@ install.packages("mapdata", repos = "http://cran.r-project.org")
 install.packages("maptools", repos = "http://cran.r-project.org")
 install.packages("sp", repos = "http://cran.r-project.org")
 install.packages("RColorBrewer", repos = "http://cran.r-project.org")
+install.packages("ggmap", repos = "http://cran.r-project.org")
 
 # Plotting
 install.packages("latticeExtra", repos = "http://cran.r-project.org")
@@ -15,8 +16,8 @@ install.packages("gridExtra", repos = "http://cran.r-project.org")
 
 # Tidyverse
 install.packages("tidyverse", repos = "http://cran.r-project.org")
-install.packages("knitr", repos = "http://cran.r-project.org")
-install.packages("rmarkdown", repos = "http://cran.r-project.org")
+# install.packages("knitr", repos = "http://cran.r-project.org")
+# install.packages("rmarkdown", repos = "http://cran.r-project.org")
 install.packages("shiny", repos = "http://cran.r-project.org")
 
 # OrgMassSpecR
