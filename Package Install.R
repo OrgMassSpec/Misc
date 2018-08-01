@@ -18,6 +18,8 @@ install.packages("shiny", repos = "http://cran.r-project.org")
 #install.packages("sp", repos = "http://cran.r-project.org")
 install.packages("RColorBrewer", repos = "http://cran.r-project.org")
 
+install.packages("ISLR", repos = "http://cran.r-project.org")
+
 # install.packages("devtools", repos = "http://cran.r-project.org")
 # devtools::install_github("dkahle/ggmap")
 # install.packages("ggmap", repos = "http://cran.r-project.org")
