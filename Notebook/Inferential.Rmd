@@ -57,7 +57,6 @@ print(p)
 dev.off()
 ```
 
-
 ### Shapiro-Wilk Test
 
 The **shapiro-wilk test** compares sample scores to a normally distributed set of scores with the same mean and standard deviation. Non-significance (p \> 0.05) means the sample scores are not different from a normal distribution. Significance (p \< 0.05) means they are different (non-normal). Limitation: with large sample sizes small deviations from normality may lead to significant results, even if this deviation would not bias a statistical procedure. Always plot with histogram or qq-plot to make informed decision.
@@ -169,3 +168,21 @@ $$t_s = \frac{\bar{x} - \mu_0}{s/\sqrt{n}}$$
 `y ~ model` is interpreted as the response `y` modelled by the linear predictor `model`. A model consists of terms separated by `+` operators. The terms consist of variable and factor names separated by `:` operators. A term is interpreted as the interaction of all the variables and factors appearing in the term. The `*` operator denotes factor crossing. Factors are predictor variables, and can be crossed or nested.
 
 See `model.matrix` for how the predictors are set up by the model formula.
+
+## Simple Linear Regression
+
+$$y_i = \beta_0 + \beta_1x_i + \epsilon_i$$
+
+```{r}
+set.seed(42)
+x <- rnorm(100)
+e <- rnorm(100, mean = 0, sd = 5)
+y <- 5 + 15 * x + e
+lm(y ~ x)
+```
+
+Therefore the regression equation is:
+
+$$y_i = 4.558 + 15.136x_i + \epsilon_i$$
+
+
