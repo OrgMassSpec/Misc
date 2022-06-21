@@ -10,7 +10,7 @@
 
 
 
-<meta name="date" content="2022-06-17" />
+<meta name="date" content="2022-06-21" />
 
 <title>Inferential</title>
 
@@ -363,7 +363,7 @@ pre code {
 
 
 <h1 class="title toc-ignore">Inferential</h1>
-<h4 class="date">2022-06-17</h4>
+<h4 class="date">2022-06-21</h4>
 
 </div>
 
@@ -660,17 +660,73 @@ as the number of variables increases. …</p>
 </div>
 <div id="r-model-formula" class="section level1">
 <h1>R Model Formula</h1>
-<p><a href="https://r4ds.had.co.nz/model-basics.html" class="uri">https://r4ds.had.co.nz/model-basics.html</a> <a href="https://www.jstor.org/stable/2346786" class="uri">https://www.jstor.org/stable/2346786</a></p>
+<p><a href="https://r4ds.had.co.nz/model-basics.html" class="uri">https://r4ds.had.co.nz/model-basics.html</a> <a href="https://www.jstor.org/stable/2346786" class="uri">https://www.jstor.org/stable/2346786</a> Symbolic
+Description of Factorial Models for Analysis of Variance</p>
 <p><code>y ~ model</code> is interpreted as the response <code>y</code>
-modelled by the linear predictor <code>model</code>. A model consists of
+modeled by the linear predictor <code>model</code>. A model consists of
 terms separated by <code>+</code> operators. The terms consist of
 variable and factor names separated by <code>:</code> operators. A term
 is interpreted as the interaction of all the variables and factors
 appearing in the term. The <code>*</code> operator denotes factor
 crossing. Factors are predictor variables, and can be crossed or
 nested.</p>
-<p>See <code>model.matrix</code> for how the predictors are set up by
-the model formula.</p>
+<p>See <code>model_matrix</code> for how the predictors are set up by
+the model formula. <code>model_matrix</code> creates a design
+matrix.</p>
+<pre class="r"><code>library(modelr)
+dd &lt;- data.frame(a = gl(3,4), b = gl(4,1,12)) # balanced 2-way
+dd</code></pre>
+<pre><code>##    a b
+## 1  1 1
+## 2  1 2
+## 3  1 3
+## 4  1 4
+## 5  2 1
+## 6  2 2
+## 7  2 3
+## 8  2 4
+## 9  3 1
+## 10 3 2
+## 11 3 3
+## 12 3 4</code></pre>
+<pre class="r"><code>model_matrix(dd, a ~ b)</code></pre>
+<pre><code>## # A tibble: 12 × 4
+##    `(Intercept)`    b2    b3    b4
+##            &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1             1     0     0     0
+##  2             1     1     0     0
+##  3             1     0     1     0
+##  4             1     0     0     1
+##  5             1     0     0     0
+##  6             1     1     0     0
+##  7             1     0     1     0
+##  8             1     0     0     1
+##  9             1     0     0     0
+## 10             1     1     0     0
+## 11             1     0     1     0
+## 12             1     0     0     1</code></pre>
+<div id="simple-linear-regression" class="section level2">
+<h2>Simple Linear Regression</h2>
+<p><span class="math display">\[y_i = \beta_0 + \beta_1x_i +
+\epsilon_i\]</span></p>
+<pre class="r"><code>set.seed(42)
+x &lt;- rnorm(100)
+e &lt;- rnorm(100, mean = 0, sd = 5)
+y &lt;- 5 + 15 * x + e
+lm(y ~ x)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = y ~ x)
+## 
+## Coefficients:
+## (Intercept)            x  
+##       4.558       15.136</code></pre>
+<p>Therefore the regression equation is:</p>
+<p><span class="math display">\[y_i = 4.558 + 15.136x_i +
+\epsilon_i\]</span> # Mixed Models</p>
+<p>References: Nesting and Mixed Effects: Part II, Meier. <a href="https://stat.ethz.ch/~meier/teaching/anova/index.html" class="uri">https://stat.ethz.ch/~meier/teaching/anova/index.html</a> An
+Introduction to Linear Mixed-Effects Modeling in R, Brown</p>
+</div>
 </div>
 
 
