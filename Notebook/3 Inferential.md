@@ -40,7 +40,9 @@ The assumptions are 1. Normally distributed data (sampling distribution or error
 
 ## Normality Assumption
 
-Many statistical tests assume the sampling distribution (not sample data) is normal (e.g., the t-test). However, we don't know the sampling distribution. From the central limit theorem, if the sample data is normal then the sampling distribution is normal. Test plots: 1. histogram of data with dnorm() generated normal curve. 2. Quantile-quantile (Q-Q plot). **Quantile** is the proportion of cases below a certain value. Each data point is compared to the expected value if the data was normally distributed. Deviations from the diagonal are changes from normality. ![qq-plot](statistics_1_qq.png). Skew and kurtosis can be calculated (e.g., e1071 package).
+Many statistical tests assume the sampling distribution (not sample data) is normal (e.g., the t-test). However, we don't know the sampling distribution. From the central limit theorem, if the sample data is normal then the sampling distribution is normal. Test plots: 1. histogram of data with dnorm() generated normal curve. 2. Quantile-quantile (Q-Q plot). **Quantile** is the proportion of cases below a certain value. Each data point is compared to the expected value if the data was normally distributed. Deviations from the diagonal are changes from normality. Skew and kurtosis can be calculated (e.g., `e1071 package`).
+
+![qq-plot](statistics_1_qq.png)
 
 ```{r}
 df <- read_csv(file = 'input_1.csv')
@@ -59,7 +61,7 @@ dev.off()
 
 ### Shapiro-Wilk Test
 
-The **shapiro-wilk test** compares sample scores to a normally distributed set of scores with the same mean and standard deviation. Non-significance (p \> 0.05) means the sample scores are not different from a normal distribution. Significance (p \< 0.05) means they are different (non-normal). Limitation: with large sample sizes small deviations from normality may lead to significant results, even if this deviation would not bias a statistical procedure. Always plot with histogram or qq-plot to make informed decision.
+The **shapiro-wilk test** compares sample scores to a normally distributed set of scores with the same mean and standard deviation. Non-significance (p > 0.05) means the sample scores are not different from a normal distribution. Significance (p < 0.05) means they are different (non-normal). Limitation: with large sample sizes small deviations from normality may lead to significant results, even if this deviation would not bias a statistical procedure. Always plot with histogram or qq-plot to make informed decision.
 
 > shapiro.test(rexam\$exam)
 
@@ -71,7 +73,7 @@ Example reporting: The score on the exam, W = 0.96, p = 0.005, was significantly
 
 ## Homogeneity of Variance Assumption
 
-First plot the data showing the variance in the groups of interest. **Levene's test** tests the null hypothesis that variance in different group means are equal. It performs a one-way ANOVA on the deviation scores (the absolute difference between each score and the mean of the corresponding group). Significance (p \< 0.05) means the null hypothesis is incorrect and the variances are significantly different. Non-significance (p \> 0.05) means the variances are equal. Limitation: when the sample size is large, small variance differences may produce a significant p-value that would not bias a statistical procedure.
+First plot the data showing the variance in the groups of interest. **Levene's test** tests the null hypothesis that variance in different group means are equal. It performs a one-way ANOVA on the deviation scores (the absolute difference between each score and the mean of the corresponding group). Significance (p < 0.05) means the null hypothesis is incorrect and the variances are significantly different. Non-significance (p > 0.05) means the variances are equal. Limitation: when the sample size is large, small variance differences may produce a significant p-value that would not bias a statistical procedure.
 
 > library(car)
 
@@ -93,7 +95,7 @@ Section 5.8.3 discusses outlier removal and transformations.
 
 Are two variables associated? When one variable deviates from its mean, does the other vary from its mean in the same way? Variance (single variable): $s^2 = \frac{SS}{N-1} = \frac{\sum(x_i - \bar{x})^2}{N - 1}$. For covariance (two variables): To remove the problem of + and - deviations cancelling each other out, multiply the deviation for one variable by the corresponding deviation for the second variable. **Covariance**:
 
-$$cov(x,y) = \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{N - 1}$$.
+$$cov(x,y) = \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{N - 1}$$
 
 A positive covariance indicates both variables increase, and negative covariance indicates one increases and the other decreases. The covariance value depends on the scale of measurement.
 
@@ -171,9 +173,14 @@ See `model_matrix` for how the predictors are set up by the model formula. `mode
 
 ```{r}
 library(modelr)
-dd <- data.frame(a = gl(3,4), b = gl(4,1,12)) # balanced 2-way
+dd <- data.frame(y = 1:6, a = gl(2,3), b = gl(3,1,6)) # balanced 2-way
 dd
-model_matrix(dd, a ~ b)
+model_matrix(dd, y ~ a + b)
+```
+This is every combination of a and b.
+
+```{r}
+model_matrix(dd, y ~ a:b)
 ```
 
 https://r4ds.had.co.nz/model-basics.html#formulas-and-model-families
@@ -192,6 +199,8 @@ lm(y ~ x)
 
 Therefore the regression equation is:
 
-$$y_i = 4.558 + 15.136x_i + \epsilon_i$$ \# Mixed Models
+$$y_i = 4.558 + 15.136x_i + \epsilon_i$$ 
+
+# Mixed Models
 
 References: Nesting and Mixed Effects: Part II, Meier. <https://stat.ethz.ch/~meier/teaching/anova/index.html> An Introduction to Linear Mixed-Effects Modeling in R, Brown
