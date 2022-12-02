@@ -201,6 +201,4 @@ Therefore the regression equation is:
 
 $$y_i = 4.558 + 15.136x_i + \epsilon_i$$ 
 
-# Mixed Models
 
-References: Nesting and Mixed Effects: Part II, Meier. <https://stat.ethz.ch/~meier/teaching/anova/index.html> An Introduction to Linear Mixed-Effects Modeling in R, Brown
