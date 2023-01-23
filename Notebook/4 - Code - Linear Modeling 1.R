@@ -11,3 +11,6 @@ pitch = c(252,244,240,233,212,204)
 df = data.frame(age, pitch) 
 lm_df = lm(pitch ~ age, df) 
 summary(lm_df)
+
+library(lme4)
+politeness <- read.csv('politeness_data.csv')

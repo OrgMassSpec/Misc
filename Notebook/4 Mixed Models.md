@@ -29,3 +29,14 @@ Assumptions
 - Check influencial data points. See `dfbeta()`.
 - Independence: each data point comes from a subject completely independent of the others.
 
+Mixed models add structure to the random $\epsilon$ aspect of the model, leaving the systematic fixed part unchanged.
+
+The independence assumption is violated if there are mutiple measures per subject. Subject variation will result in a different baseline $data$ values for each subject, and can be modeled as a _random effect_, in this case a _random intercept_ for each subject. Each subject is assigened its own intercept value. Here, it is assumed the treatment effect is the same on all subjects, therefore the slope for each subject's $data$ is the same.
+
+$$data \sim group1 + group2 + (1|subject) + \epsilon$$
+
+The notation $(1|subject)$ says to assume the intercept is different for each subject. 
+
+If there is an additional source of non-dependence: e.g., 
+
+$$data \sim group1 + group2 + (1|subject) + (1|item) + \epsilon$$
