@@ -75,3 +75,9 @@ Generally, where p is the probability value of the confidence interval:
 
 The probability is split in half and on both ends of the distribution. 
 
+## Boxplot
+
+Box covers 50% of the data, i.e., through the 1st, 2nd, and 3rd quartile. The whisker is 1.5 times the interquartile range of the 1st quartile to the 3rd quartile. Max of $Q3+1.5 \times IQR$ and min $Q1-1.5 \times IQR$. Outside the whiskers are extreme values.   
+
+See: `mean()`, `median()`, `sd()`, `range()`, and `quantile()`.
+
